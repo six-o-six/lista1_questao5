@@ -10,31 +10,32 @@ public class CompositePart extends CarPart {
 
     private final List<CarPart> children = new ArrayList<>();
 
-    // O peso base é 0.0, pois o peso do composto será a soma de seus filhos.
     public CompositePart(String nome) {
         super(nome, 0.0); 
     }
 
-    /**
-     * Adiciona um subcomponente ao composto.
-     * @param component O componente a ser adicionado (pode ser outra Folha ou outro Composto).
-     */
     public void add(CarPart component) {
         children.add(component);
     }
 
     /**
-     * Calcula o peso total deste composto somando o peso de todos os seus subcomponentes.
-     * A recursão é o cerne do padrão Composite.
+     * Calcula o peso total e imprime o log de forma recursiva.
+     * * @param currentTotal O peso acumulado dos componentes anteriores.
+     * @return O peso total deste composto.
      */
     @Override
-    public double calculateTotalWeight() {
-        double total = getPesoBase(); 
+    public double calculateTotalWeight(double currentTotal) {
+        double subTotalPeso = 0.0;
         
+        // Itera sobre todos os filhos
         for (CarPart part : children) {
-            // Chamada recursiva: o método calculateTotalWeight() será chamado em cada filho.
-            total += part.calculateTotalWeight(); 
+            // A chamada recursiva passa o total acumulado ATUALIZADO (peso dos componentes que o precedem).
+            double pesoDoFilho = part.calculateTotalWeight(currentTotal + subTotalPeso); 
+            
+            // O subTotalPeso acumula o peso de todos os filhos processados até agora.
+            subTotalPeso += pesoDoFilho; 
         }
-        return total;
+        
+        return subTotalPeso;
     }
 }

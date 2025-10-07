@@ -16,8 +16,8 @@ public class Main {
 
         // 2. Montagem do Chassi (Composite)
         CompositePart chassi = new CompositePart("Chassi");
-        chassi.add(tremDeForca); // Adiciona o Trem de Força (Composite)
-        chassi.add(new SimplePart("Suspensão", 150.0)); // Adiciona a Suspensão (Leaf)
+        chassi.add(tremDeForca);
+        chassi.add(new SimplePart("Suspensão", 150.0));
         
         // 3. Montagem da Carroceria (Composite)
         CompositePart carroceria = new CompositePart("Carroceria");
@@ -32,14 +32,12 @@ public class Main {
         carro.add(carroceria);
         carro.add(chassi);
 
-        // 5. Cálculo e Exibição do Resultado (Chamada na Raiz)
-        double pesoTotal = carro.calculateTotalWeight();
+        // 5. Cálculo e Exibição do Resultado
+        // A chamada inicial deve passar 0.0 como o peso acumulado.
+        double pesoTotal = carro.calculateTotalWeight(0.0);
         
-        System.out.println("--- Cálculo de Peso do Veículo ---");
+        System.out.println("\n--- Resumo Final do Veículo ---");
         System.out.println("Nome do Veículo: " + carro.getNome());
-        System.out.printf("Peso Total do Carro: %.2f kg\n", pesoTotal);
-        System.out.println("\nVerificação de Componentes:");
-        System.out.printf("Peso da Carroceria: %.2f kg\n", carroceria.calculateTotalWeight());
-        System.out.printf("Peso do Chassi: %.2f kg\n", chassi.calculateTotalWeight());
+        System.out.printf("Peso Total Calculado: %.2f kg\n", pesoTotal);
     }
 }

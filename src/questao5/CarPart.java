@@ -22,8 +22,11 @@ public abstract class CarPart {
     }
 
     /**
-     * Operação principal: calcula recursivamente o peso total (incluindo subcomponentes).
-     * @return O peso total da parte.
+     * Operação principal: calcula o peso total e imprime o log do total parcial.
+     *
+     * @param currentTotal O peso acumulado do carro até o momento da chamada, 
+     * usado para o logging do "Total parcial".
+     * @return O peso total do componente, incluindo subcomponentes.
      */
-    public abstract double calculateTotalWeight();
+    public abstract double calculateTotalWeight(double currentTotal);
 }

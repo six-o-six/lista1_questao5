@@ -10,10 +10,21 @@ public class SimplePart extends CarPart {
     }
 
     /**
-     * O peso total de uma peça simples é apenas o seu peso base.
+     * Calcula o peso total e imprime o log.
+     * * @param currentTotal O peso acumulado dos componentes anteriores.
+     * @return O peso desta peça.
      */
     @Override
-    public double calculateTotalWeight() {
-        return getPesoBase();
+    public double calculateTotalWeight(double currentTotal) {
+        double peso = getPesoBase();
+        double novoTotal = currentTotal + peso;
+        
+        System.out.printf("Somando agora o peso de %s: %.2f. Total parcial: %.2f\n", 
+            getNome(), 
+            peso, 
+            novoTotal // Imprime a soma parcial
+        );
+        
+        return peso;
     }
 }
