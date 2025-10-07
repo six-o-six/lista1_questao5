@@ -1,0 +1,18 @@
+# Pastas de build e output
+/bin/
+/out/
+/target/
+
+# Arquivos Java compilados
+*.class
+*.jar
+
+# Arquivos da IDE Eclipse
+.classpath
+.project
+.settings/
+*.log
+
+# Arquivos temporários e do sistema operacional
+.DS_Store
+Thumbs.db
